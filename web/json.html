@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript" src="js/prototype-1.6.0.3.js">
+    </script>
+    <script type="text/javascript">
+        function f1(){
+            var obj = new Object();
+            obj.name = 'John';
+            obj.age = 22;
+            view(obj);
+        }
+
+        function f2(){
+            //使用js声明的方式来创建js对象
+            var obj = {"name":"Tom","age":33};
+            view(obj);
+        }
+
+        function f3(){
+            var obj = {"name":"Sally",
+                "address":{"city":"bj","street":"ca","room":"1234"}};
+            alert(obj.address.city);
+        }
+
+        function f4(){
+            var arr = [{"name":"Tom","age":33},
+                {"name":"Jetty","age":23}
+            ];
+            alert(arr[1].name);
+        }
+
+        function view(o){
+            alert(o.name);
+        }
+
+        //把json字符串转换成js对象或者json对象组成的数组
+        function f5(){
+            var str = '{"name":"Tom","age":33}';
+            var obj = str.evalJSON();
+            alert(obj.name);
+        }
+
+        function f6(){
+            var str = '[{"name":"Tom",'+ '"age":33},{"name":"Jetty",'+ '"age":23}]';
+            var arr = str.evalJSON();
+            alert(arr[1].name);
+        }
+        //js内置的json对象将字符串转换成json
+        function f7() {
+            var str = '{"name":"Tom","age":33}';
+            alert(str);
+            var obj = JSON.parse(str);
+            alert(obj.name);
+        }
+    </script>
+</head>
+<body style="font-size:30px;">
+<a href="javascript:;" onclick="f7();">ClickMe</a>
+</body>
+</html>
