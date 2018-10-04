@@ -67,6 +67,13 @@ public class ActionServlet extends HttpServlet {
             }else{
                 out.println("长沙,cs;岳阳,yy");
             }
+        }else if(action.equals("/salary")){
+            String flight=request.getParameter("eId");
+            if(flight.equals("T10001")){
+                out.println("实际工资：10000<br/>个税：2500");
+            }else{
+                out.println("实际工资：20000<br/>个税：5000");
+            }
         }
         out.close();
     }
