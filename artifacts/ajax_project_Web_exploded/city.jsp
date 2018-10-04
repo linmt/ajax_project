@@ -8,13 +8,15 @@
 <%@page pageEncoding="utf-8" contentType="text/html;charset=utf-8" %>
 <html>
 <head>
-    <script type="text/javascript" src="js/prototype-1.6.0.3.js">
-    </script>
     <script type="text/javascript" src="js/my.js"></script>
+    <script type="text/javascript" src="js/prototype-1.6.0.3.js"></script>
+
     <script type="text/javascript">
         function showCities(){
             var xhr = getXhr();
-            xhr.open('get','getCities.do?province=' + $F('s1'),true);
+            //var uri="getCities.do?province="+document.getElementById("s1").value;
+            var uri="getCities.do?province="+$('s1').value;
+            xhr.open("get",encodeURI(uri),true);
             xhr.onreadystatechange=function(){
                 if(xhr.readyState == 4 && xhr.status == 200){
                     var txt = xhr.responseText;

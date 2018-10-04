@@ -1,5 +1,6 @@
 package json;
 
+import bean.Friend;
 import bean.Stock;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -42,7 +43,24 @@ public class Test {
         String jsonStr = arry.toString();
         System.out.println(jsonStr);
     }
-    public static void main(String[] args) {
-        test2();
+    //JSON字符串转换为Java对象
+    public static void test3(){
+        String jsonStr = "{\"name\":\"Luffy\",\"age\":17}";
+        JSONObject jsonObj = JSONObject.fromObject(jsonStr);
+        Friend friend = (Friend)JSONObject.toBean(jsonObj, Friend.class);
+        System.out.println(friend);
     }
+    //JSON字符串转换为Java数组（集合）
+    public static void test4() {
+        String jsonStr = "[{\"name\":\"Luffy\",\"age\":17}," + "{\"name\":\"Zoro\",\"age\":19}]";
+        JSONArray jsonArr = JSONArray.fromObject(jsonStr);
+        List<Friend> friends = (List<Friend>) JSONArray.toCollection(jsonArr, Friend.class);
+        for (Friend f : friends) {
+            System.out.println(f);
+        }
+    }
+
+     public static void main(String[] args) {
+        test4();
+     }
 }

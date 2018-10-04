@@ -24,6 +24,7 @@
             //用encodeURI编码
             xhr.open('get',encodeURI(uri),true);
             //xhr.open('get',uri,true);
+            document.getElementById("uname_msg").innerHTML="正在检查。。。。";
             xhr.onreadystatechange=function(){
                 if(xhr.readyState == 4){
                     if(xhr.status == 200){
@@ -45,6 +46,7 @@
             var xhr = getXhr();
             //step2,使用ajax对象发送请求
             xhr.open('post','check_uname.do',true);
+            document.getElementById("uname_msg").innerHTML="正在检查。。。。";
             xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
             xhr.onreadystatechange=function(){
                 if(xhr.readyState == 4 && xhr.status == 200){

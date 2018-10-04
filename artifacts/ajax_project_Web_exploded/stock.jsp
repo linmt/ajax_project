@@ -32,7 +32,7 @@
     <script type="text/javascript" src="js/my.js"></script>
     <script type="text/javascript">
         function showStock(){
-            setInterval(quoto,1000);
+            setInterval(quoto,5000);
         }
         /*
          异步地向服务器发送请求，服务器返回json字符串(描述几
@@ -58,7 +58,9 @@
                       innerHTML属性赋值，如果要解决该问题，可以使用insertRow,
                       insertCell方法来插入行，或者使用一些框架(jQuery)。
                      */
-                    $('tb1').innerHTML = htmlContent;
+                    //$('s1').innerHTML=htmlContent;
+                    // 为什么这里不行？
+                    document.getElementById('tb1').innerHTML = htmlContent;
                 }
             };
             xhr.send(null);

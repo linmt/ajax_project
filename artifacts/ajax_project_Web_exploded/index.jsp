@@ -25,28 +25,42 @@
             //alert(xhr);
             //创建一个http请求
             //默认异步
-            xhr.open("get","demo1.do",true);
+            var uri="demo1.do?i="+document.getElementById("i").value;
+            xhr.open("get",encodeURI(uri),true);
             //注册一个回调函数，请求处理时自动调用
             xhr.onreadystatechange=function () {
                 //必须等到ajax对象获得了服务器返回的所有数据。
                 if(xhr.readyState == 4&&xhr.status==200){
                     var txt = xhr.responseText;
                     //使用txt更新当前页面。
-                    document.getElementById("a").innerHTML =txt;
-                }else {
-                    alert(xhr.readyState)
+                    document.getElementById("i").value =txt;
                 }
+                //else {
+                //    alert(xhr.readyState)
+                //}
             };
             //发送http请求，如果是post，则要写键值对
             xhr.send(null);
-            alert(xhr.readyState);
+            //alert(xhr.readyState);
+        }
+        function sendRequest2() {
+            var xhr=getXhr();
+            xhr.open("post","demo1.do",true);
+            xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+            xhr.onreadystatechange=function () {
+                if(xhr.readyState == 4 && xhr.status==200){
+                    var txt = xhr.responseText;
+                    document.getElementById("i").value =txt;
+                }
+            };
+            xhr.send('i=' + document.getElementById("i").value);
         }
     </script>
 </head>
 <body>
     <a href="#" onclick="sendRequest() ">查看上证指数</a></br>
-    <a href="javascript:alert(getXhr());">也是查看上证指数</a>
-    <span id="a"></span>
+    <a href="javascript:sendRequest();">也是查看上证指数</a>
+    <input type="text" id="i" value="默认值"/>
     <hr/>
     <table>
         <tr>

@@ -12,9 +12,11 @@ public class DemoServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("开始");
+        request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out=response.getWriter();
-        out.println("上证指数：35");
+        String i = request.getParameter("i");
+        out.println("上证指数：35"+i+1);
         out.flush();
         out.close();
         System.out.println("结束");
