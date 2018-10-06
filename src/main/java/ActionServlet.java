@@ -1,3 +1,4 @@
+import bean.Note;
 import bean.Stock;
 import net.sf.json.JSONArray;
 import org.apache.commons.fileupload.FileItem;
@@ -100,10 +101,7 @@ public class ActionServlet extends HttpServlet {
                     }else{
                         ServletContext sctx=getServletContext();  //上传文件域
                         //依据逻辑路径获得实际部署时的物理路径。
-                        /**
-                         * D:\workspace_for_idea\ajax_project\artifacts\ajax_project_Web_exploded\upload
-                         */
-                        String path=sctx.getRealPath("upload");
+                        String path=sctx.getRealPath("/upload");
                         System.out.println(path);
                         String fileName=item.getName();  //获得上传文件的名称
                         File file = new File(path+File.separator+fileName);
@@ -113,7 +111,19 @@ public class ActionServlet extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+        }else if(action.equals("/note")){
+            List<Note> notes = new ArrayList<Note>();
+            Note note=new Note();
+            note.setId("01");
+            note.setName("java变量");
+            Note note1=new Note();
+            note1.setId("02");
+            note1.setName("php变量");
+            notes.add(note);
+            notes.add(note1);
+            JSONArray arry = JSONArray.fromObject(notes);
+            String jsonStr = arry.toString();
+            out.println(jsonStr);
         }
         out.close();
     }
